@@ -300,63 +300,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. MP3 Background Music Autoplay & Toggle
+    // 6. MP3 Background Music (Continuous Autoplay, Non-Mute)
     const bgMusic = document.getElementById('bgMusic');
-    const soundToggle = document.getElementById('soundToggle');
-    const soundIcon = document.getElementById('soundIcon');
-    const btnText = soundToggle ? soundToggle.querySelector('.btn-text') : null;
-
-    function updatePlayState(isPlaying) {
-        if (!soundToggle || !soundIcon || !btnText) return;
-        if (isPlaying) {
-            soundToggle.classList.add('playing');
-            soundIcon.textContent = '🎵';
-            btnText.textContent = 'Pause Music';
-        } else {
-            soundToggle.classList.remove('playing');
-            soundIcon.textContent = '🔇';
-            btnText.textContent = 'Play Music';
-        }
-    }
-
-    function tryPlayAudio() {
+    
+    function startMusic() {
         if (!bgMusic) return;
-        bgMusic.volume = 0.65;
+        bgMusic.volume = 0.75;
+        bgMusic.loop = true;
         const playPromise = bgMusic.play();
         if (playPromise !== undefined) {
-            playPromise.then(() => {
-                updatePlayState(true);
-            }).catch(() => {
-                // Autoplay blocked by browser policy; wait for first interaction
-                updatePlayState(false);
-                const startOnInteraction = () => {
-                    bgMusic.play().then(() => {
-                        updatePlayState(true);
-                    }).catch(() => {});
-                    window.removeEventListener('click', startOnInteraction);
-                    window.removeEventListener('touchstart', startOnInteraction);
-                    window.removeEventListener('keydown', startOnInteraction);
+            playPromise.catch(() => {
+                // Browsers require a user interaction to start audio context
+                const unlockAudio = () => {
+                    bgMusic.play().catch(() => {});
+                    window.removeEventListener('click', unlockAudio);
+                    window.removeEventListener('touchstart', unlockAudio);
+                    window.removeEventListener('keydown', unlockAudio);
+                    window.removeEventListener('scroll', unlockAudio);
                 };
-                window.addEventListener('click', startOnInteraction, { once: true });
-                window.addEventListener('touchstart', startOnInteraction, { once: true });
-                window.addEventListener('keydown', startOnInteraction, { once: true });
+                window.addEventListener('click', unlockAudio, { once: true });
+                window.addEventListener('touchstart', unlockAudio, { once: true });
+                window.addEventListener('keydown', unlockAudio, { once: true });
+                window.addEventListener('scroll', unlockAudio, { once: true });
             });
         }
     }
 
-    // Try playing immediately
-    tryPlayAudio();
+    // Attempt autoplay immediately
+    startMusic();
 
-    if (soundToggle && bgMusic) {
-        soundToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (bgMusic.paused) {
-                bgMusic.play().then(() => {
-                    updatePlayState(true);
-                });
-            } else {
-                bgMusic.pause();
-                updatePlayState(false);
+    // Prevent pausing to keep music playing continuously
+    if (bgMusic) {
+        bgMusic.addEventListener('pause', () => {
+            if (!bgMusic.ended) {
+                bgMusic.play().catch(() => {});
             }
         });
     }

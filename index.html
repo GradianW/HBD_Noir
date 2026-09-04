@@ -27,11 +27,14 @@
     <audio id="bgMusic" src="01-Monk-Turner-Fascinoma-Its-Your-Birthday(chosic.com).mp3" preload="auto" loop></audio>
 
     <main class="main-wrapper">
-        <!-- Floating Music / Sound Toggle -->
-        <button id="soundToggle" class="sound-toggle-btn playing" title="Toggle Birthday Music">
-            <span class="icon" id="soundIcon">🎵</span>
-            <span class="btn-text">Playing Music</span>
-        </button>
+        <!-- Floating Now Playing Indicator (No Mute) -->
+        <div id="musicIndicator" class="music-indicator">
+            <span class="icon">🎵</span>
+            <span class="indicator-text">Playing Birthday Song</span>
+            <span class="sound-waves">
+                <span></span><span></span><span></span>
+            </span>
+        </div>
 
         <section class="card-container">
             <!-- Gamer Badge Pill -->

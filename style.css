@@ -118,47 +118,59 @@ body {
     padding: 2.5rem 1.25rem;
 }
 
-.sound-toggle-btn {
+.music-indicator {
     position: fixed;
     top: 1.25rem;
     right: 1.25rem;
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(20, 24, 52, 0.8);
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    gap: 0.55rem;
+    background: linear-gradient(135deg, rgba(20, 24, 52, 0.85), rgba(30, 36, 80, 0.85));
+    border: 1px solid rgba(0, 229, 255, 0.4);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: var(--text-main);
-    padding: 0.65rem 1.15rem;
+    padding: 0.6rem 1.1rem;
     border-radius: 999px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    user-select: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 229, 255, 0.2);
 }
 
-.sound-toggle-btn:hover {
-    background: rgba(30, 36, 80, 0.95);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px var(--primary-glow);
-}
-
-.sound-toggle-btn.playing {
-    background: linear-gradient(135deg, rgba(0, 229, 255, 0.25), rgba(168, 85, 247, 0.25));
-    border-color: var(--accent);
-}
-
-.sound-toggle-btn.playing .icon {
+.music-indicator .icon {
     animation: bounceIcon 0.8s infinite alternate ease-in-out;
+}
+
+.sound-waves {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 14px;
+    margin-left: 2px;
+}
+
+.sound-waves span {
+    width: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    animation: waveBounce 0.8s infinite ease-in-out alternate;
+}
+
+.sound-waves span:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+.sound-waves span:nth-child(2) { height: 14px; animation-delay: 0.3s; }
+.sound-waves span:nth-child(3) { height: 9px; animation-delay: 0.2s; }
+
+@keyframes waveBounce {
+    0% { height: 4px; }
+    100% { height: 14px; }
 }
 
 @keyframes bounceIcon {
     from { transform: translateY(0); }
-    to { transform: translateY(-3px) scale(1.15); }
+    to { transform: translateY(-2px) scale(1.1); }
 }
 
 /* ==========================================================================
