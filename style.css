@@ -118,6 +118,35 @@ body {
     padding: 2.5rem 1.25rem;
 }
 
+.audio-start-prompt {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.95), rgba(168, 85, 247, 0.95));
+    color: #ffffff;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 8px 30px rgba(0, 229, 255, 0.5);
+    animation: bouncePrompt 1.2s infinite alternate ease-in-out;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.audio-start-prompt.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
+@keyframes bouncePrompt {
+    from { transform: translateX(-50%) translateY(0); }
+    to { transform: translateX(-50%) translateY(-6px); }
+}
+
 .music-indicator {
     position: fixed;
     top: 1.25rem;

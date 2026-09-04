@@ -24,7 +24,14 @@
     <div class="glowing-orb orb-3"></div>
 
     <!-- Background Birthday Song -->
-    <audio id="bgMusic" src="01-Monk-Turner-Fascinoma-Its-Your-Birthday(chosic.com).mp3" preload="auto" loop></audio>
+    <audio id="bgMusic" preload="auto" loop playsinline>
+        <source src="birthday-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tap anywhere to play banner if autoplay is blocked by browser policy -->
+    <div id="audioStartPrompt" class="audio-start-prompt">
+        <span>🎵 Tap anywhere on screen to play music! ✨</span>
+    </div>
 
     <main class="main-wrapper">
         <!-- Floating Now Playing Indicator (No Mute) -->

@@ -302,17 +302,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. MP3 Background Music (Continuous Autoplay, Non-Mute)
     const bgMusic = document.getElementById('bgMusic');
+    const audioPrompt = document.getElementById('audioStartPrompt');
     
+    function hidePrompt() {
+        if (audioPrompt) {
+            audioPrompt.classList.add('hidden');
+        }
+    }
+
     function startMusic() {
         if (!bgMusic) return;
-        bgMusic.volume = 0.75;
+        bgMusic.volume = 0.8;
         bgMusic.loop = true;
+        
         const playPromise = bgMusic.play();
         if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                // Browsers require a user interaction to start audio context
+            playPromise.then(() => {
+                // Autoplay started successfully
+                hidePrompt();
+            }).catch(() => {
+                // Autoplay blocked by browser policy; wait for first interaction
                 const unlockAudio = () => {
-                    bgMusic.play().catch(() => {});
+                    bgMusic.play().then(() => {
+                        hidePrompt();
+                    }).catch(() => {});
                     window.removeEventListener('click', unlockAudio);
                     window.removeEventListener('touchstart', unlockAudio);
                     window.removeEventListener('keydown', unlockAudio);
