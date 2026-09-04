@@ -300,28 +300,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Sound Toggle Button
+    // 6. MP3 Background Music Autoplay & Toggle
+    const bgMusic = document.getElementById('bgMusic');
     const soundToggle = document.getElementById('soundToggle');
     const soundIcon = document.getElementById('soundIcon');
-    const btnText = soundToggle.querySelector('.btn-text');
+    const btnText = soundToggle ? soundToggle.querySelector('.btn-text') : null;
 
-    if (soundToggle) {
-        soundToggle.addEventListener('click', () => {
-            if (synth.isPlaying) {
-                synth.stop();
-                soundToggle.classList.remove('playing');
-                soundIcon.textContent = '🎵';
-                btnText.textContent = 'Play Birthday Tune';
-            } else {
-                soundToggle.classList.add('playing');
-                soundIcon.textContent = '⏸️';
-                btnText.textContent = 'Playing Tune...';
+    function updatePlayState(isPlaying) {
+        if (!soundToggle || !soundIcon || !btnText) return;
+        if (isPlaying) {
+            soundToggle.classList.add('playing');
+            soundIcon.textContent = '🎵';
+            btnText.textContent = 'Pause Music';
+        } else {
+            soundToggle.classList.remove('playing');
+            soundIcon.textContent = '🔇';
+            btnText.textContent = 'Play Music';
+        }
+    }
 
-                synth.playBirthdayTune(() => {
-                    soundToggle.classList.remove('playing');
-                    soundIcon.textContent = '🎵';
-                    btnText.textContent = 'Play Birthday Tune';
+    function tryPlayAudio() {
+        if (!bgMusic) return;
+        bgMusic.volume = 0.65;
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                updatePlayState(true);
+            }).catch(() => {
+                // Autoplay blocked by browser policy; wait for first interaction
+                updatePlayState(false);
+                const startOnInteraction = () => {
+                    bgMusic.play().then(() => {
+                        updatePlayState(true);
+                    }).catch(() => {});
+                    window.removeEventListener('click', startOnInteraction);
+                    window.removeEventListener('touchstart', startOnInteraction);
+                    window.removeEventListener('keydown', startOnInteraction);
+                };
+                window.addEventListener('click', startOnInteraction, { once: true });
+                window.addEventListener('touchstart', startOnInteraction, { once: true });
+                window.addEventListener('keydown', startOnInteraction, { once: true });
+            });
+        }
+    }
+
+    // Try playing immediately
+    tryPlayAudio();
+
+    if (soundToggle && bgMusic) {
+        soundToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    updatePlayState(true);
                 });
+            } else {
+                bgMusic.pause();
+                updatePlayState(false);
             }
         });
     }
