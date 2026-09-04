@@ -212,7 +212,7 @@ function spawnBalloons() {
     const area = document.getElementById('balloonArea');
     if (!area) return;
 
-    const balloonEmojis = ['🎈', '✨', '💖', '🎂', '🌸', '🎁', '⭐', '🎈'];
+    const balloonEmojis = ['🎈', '✨', '🍀', '🎂', '🌸', '🎁', '⭐', '🎈'];
     const colors = [
         'radial-gradient(circle at 35% 35%, #ff9ac9, #db2777)',
         'radial-gradient(circle at 35% 35%, #c084fc, #7e22ce)',
