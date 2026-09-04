@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Ka Indri! ✨ (Noireinds)</title>
+    <meta name="description" content="A special birthday wish website dedicated to Noireinds aka Ka Indri. Wishing you longevity, boundless joy, and radiant health!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Animated Stars & Orbs -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+    <div class="glowing-orb orb-3"></div>
+
+    <main class="main-wrapper">
+        <!-- Floating Music / Sound Toggle -->
+        <button id="soundToggle" class="sound-toggle-btn" title="Toggle Birthday Melody">
+            <span class="icon" id="soundIcon">🎵</span>
+            <span class="btn-text">Play Birthday Tune</span>
+        </button>
+
+        <section class="card-container">
+            <!-- Header Badge -->
+            <div class="badge-pill">
+                <span class="sparkle">✨</span> A Special Day for a Special Soul <span class="sparkle">✨</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="title">
+                Happy Birthday, <br>
+                <span class="name-gradient">Ka Indri</span>
+                <span class="alias-tag">@Noireinds</span>
+            </h1>
+
+            <!-- Interactive Cake & Candle Section -->
+            <div class="interactive-cake-box">
+                <div class="cake-illustration" id="cakeElement" title="Click or tap to blow the candle!">
+                    <div class="candle">
+                        <div class="flame" id="candleFlame"></div>
+                    </div>
+                    <div class="cake-top"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-bottom"></div>
+                </div>
+                <p class="cake-hint" id="cakeHint">✨ Tap the candle to make a wish & blow it out! ✨</p>
+            </div>
+
+            <!-- Birthday Wishes Glass Card -->
+            <div class="wishes-card">
+                <div class="card-glow"></div>
+                <h2 class="wish-heading">A Heartfelt Birthday Wish For You</h2>
+                <div class="divider">
+                    <span>🌟</span>
+                </div>
+                <p class="wish-paragraph highlight-text">
+                    "May your journey through life be blessed with vibrant health, abundant joy, inner tranquility, and long, fruitful years ahead."
+                </p>
+                <p class="wish-paragraph">
+                    To the wonderful <strong>Ka Indri</strong> (<em>Noireinds</em>), on this milestone celebration, may every step you take lead to blooming opportunities, unbreakable resilience, and memories overflowing with laughter. May you continue to shine bright and inspire everyone fortunate enough to cross paths with you.
+                </p>
+
+                <!-- Longevity & Blessings Grid -->
+                <div class="blessings-grid">
+                    <div class="blessing-item">
+                        <div class="blessing-icon">🌿</div>
+                        <div class="blessing-title">Long & Healthy Life</div>
+                        <div class="blessing-desc">Strength, vitality, and endless wellness in mind, body, and spirit.</div>
+                    </div>
+                    <div class="blessing-item">
+                        <div class="blessing-icon">💫</div>
+                        <div class="blessing-title">Dreams Fulfilled</div>
+                        <div class="blessing-desc">May every goal and passion you pursue blossom into reality.</div>
+                    </div>
+                    <div class="blessing-item">
+                        <div class="blessing-icon">💖</div>
+                        <div class="blessing-title">Endless Joy & Peace</div>
+                        <div class="blessing-desc">Surrounded by love, warmth, peace of mind, and smiling faces.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Action Buttons -->
+            <div class="actions-wrapper">
+                <button class="btn btn-primary" id="celebrateBtn">
+                    <span>🎉 Shower with Confetti</span>
+                </button>
+                <button class="btn btn-secondary" id="giftWishBtn">
+                    <span>💌 Pop Birthday Balloons</span>
+                </button>
+            </div>
+
+            <!-- Floating Balloons Container -->
+            <div class="balloon-area" id="balloonArea"></div>
+
+            <!-- Footer Note -->
+            <footer class="footer-note">
+                <p>Crafted with love & heartfelt wishes for <strong>Noireinds</strong> 🌸</p>
+                <p class="sub-footer">Here's to another beautiful year of living, laughing, and thriving!</p>
+            </footer>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
