@@ -4,7 +4,7 @@
 function createStars() {
     const container = document.getElementById('starsContainer');
     if (!container) return;
-    const starCount = 65;
+    const starCount = 70;
 
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -28,7 +28,7 @@ function createStars() {
 }
 
 // ==========================================================================
-// Web Audio API - Synthesized Happy Birthday Music Box
+// Web Audio API - Synthesized Happy Birthday & Level Up Sounds
 // ==========================================================================
 class BirthdayAudioSynthesizer {
     constructor() {
@@ -47,13 +47,12 @@ class BirthdayAudioSynthesizer {
         }
     }
 
-    playTone(freq, time, duration = 0.35) {
+    playTone(freq, time, duration = 0.35, type = 'sine') {
         if (!this.ctx) return;
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
 
-        // Music box / celesta timbre (sine + harmonics)
-        osc.type = 'sine';
+        osc.type = type;
         osc.frequency.setValueAtTime(freq, time);
 
         // Envelope
@@ -73,11 +72,6 @@ class BirthdayAudioSynthesizer {
         this.stop();
         this.isPlaying = true;
 
-        // Notes for Happy Birthday in C major
-        // G4, G4, A4, G4, C5, B4
-        // G4, G4, A4, G4, D5, C5
-        // G4, G4, G5, E5, C5, B4, A4
-        // F5, F5, E5, C5, D5, C5
         const notes = [
             { f: 392.00, d: 0.35, gap: 0.4 }, // Hap-
             { f: 392.00, d: 0.35, gap: 0.4 }, // py
@@ -126,10 +120,20 @@ class BirthdayAudioSynthesizer {
         this.timeoutIds.push(timerId);
     }
 
+    // Gaming Level Up Chime
+    playLevelUpSound() {
+        this.init();
+        const t = this.ctx.currentTime;
+        this.playTone(523.25, t + 0.00, 0.12, 'triangle'); // C5
+        this.playTone(659.25, t + 0.08, 0.12, 'triangle'); // E5
+        this.playTone(783.99, t + 0.16, 0.12, 'triangle'); // G5
+        this.playTone(1046.50, t + 0.24, 0.35, 'triangle'); // C6
+    }
+
     playChimePop() {
         this.init();
-        const note = 523.25 + Math.random() * 400;
-        this.playTone(note, this.ctx.currentTime, 0.2);
+        const note = 580 + Math.random() * 350;
+        this.playTone(note, this.ctx.currentTime, 0.18, 'sine');
     }
 
     stop() {
@@ -147,12 +151,12 @@ const synth = new BirthdayAudioSynthesizer();
 function launchFullConfetti() {
     if (typeof confetti !== 'function') return;
 
-    // Center burst
+    // Center burst with cyan & gaming colors
     confetti({
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ff7ebb', '#9d7bff', '#ffd166', '#38bdf8', '#ffffff']
+        colors: ['#00e5ff', '#a855f7', '#ffd166', '#ff334b', '#00e676', '#ffffff']
     });
 
     // Side cannons
@@ -162,14 +166,14 @@ function launchFullConfetti() {
             angle: 60,
             spread: 55,
             origin: { x: 0 },
-            colors: ['#ff7ebb', '#ffd166', '#a855f7']
+            colors: ['#00e5ff', '#ffd166', '#a855f7']
         });
         confetti({
             particleCount: 50,
             angle: 120,
             spread: 55,
             origin: { x: 1 },
-            colors: ['#38bdf8', '#ec4899', '#ffd166']
+            colors: ['#38bdf8', '#ff334b', '#00e676']
         });
     }, 250);
 }
@@ -186,18 +190,18 @@ function setupCakeInteraction() {
     cakeElement.addEventListener('click', () => {
         if (!isExtinguished) {
             candleFlame.classList.add('extinguished');
-            cakeHint.textContent = "🎉 Wish Granted! May all your hopes come true! 💫";
-            cakeHint.style.color = "#ff7ebb";
+            cakeHint.textContent = "🏆 LEVEL UP! Buff Applied: +99999 Longevity & Happiness! ⚡";
+            cakeHint.style.color = "#00e5ff";
             isExtinguished = true;
 
-            // Trigger celebration
+            // Trigger level up sound & celebration
             launchFullConfetti();
-            synth.playChimePop();
+            synth.playLevelUpSound();
 
-            // Auto-relight after 8 seconds so user can enjoy again
+            // Auto-relight after 8 seconds
             setTimeout(() => {
                 candleFlame.classList.remove('extinguished');
-                cakeHint.textContent = "✨ Tap the candle to make a wish & blow it out! ✨";
+                cakeHint.textContent = "✨ Tap the candle to make a wish & claim your Level Up buff! ✨";
                 cakeHint.style.color = "var(--accent)";
                 isExtinguished = false;
             }, 8000);
@@ -206,19 +210,19 @@ function setupCakeInteraction() {
 }
 
 // ==========================================================================
-// Floating Balloons Spawner
+// Floating Balloons Spawner (Roblox themed)
 // ==========================================================================
 function spawnBalloons() {
     const area = document.getElementById('balloonArea');
     if (!area) return;
 
-    const balloonEmojis = ['🎈', '✨', '🍀', '🎂', '🌸', '🎁', '⭐', '🎈'];
+    const balloonEmojis = ['🎈', '🎮', '💎', '🏆', '🎂', '⭐', '🍀', '✨', '⚡', '🎈'];
     const colors = [
-        'radial-gradient(circle at 35% 35%, #ff9ac9, #db2777)',
+        'radial-gradient(circle at 35% 35%, #38bdf8, #0284c7)',
         'radial-gradient(circle at 35% 35%, #c084fc, #7e22ce)',
-        'radial-gradient(circle at 35% 35%, #93c5fd, #2563eb)',
+        'radial-gradient(circle at 35% 35%, #4ade80, #15803d)',
         'radial-gradient(circle at 35% 35%, #fde047, #ca8a04)',
-        'radial-gradient(circle at 35% 35%, #86efac, #16a34a)'
+        'radial-gradient(circle at 35% 35%, #f87171, #dc2626)'
     ];
 
     for (let i = 0; i < 15; i++) {
@@ -283,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (celebrateBtn) {
         celebrateBtn.addEventListener('click', () => {
             launchFullConfetti();
-            synth.playChimePop();
+            synth.playLevelUpSound();
         });
     }
 

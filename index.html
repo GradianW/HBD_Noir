@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Ka Indri! ✨ (Noireinds)</title>
-    <meta name="description" content="A special birthday wish website dedicated to Noireinds aka Ka Indri. Wishing you longevity, boundless joy, and radiant health!">
+    <title>Happy Birthday, Ka Indri! 🎮✨ (Noireinds)</title>
+    <meta name="description" content="Level Up! A special Roblox-themed birthday website for Ka Indri (Noireinds). Wishing you max HP, longevity, and legendary achievements!">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Canvas Confetti CDN -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -31,17 +31,32 @@
         </button>
 
         <section class="card-container">
-            <!-- Header Badge -->
-            <div class="badge-pill">
-                <span class="sparkle">✨</span> A Special Day for a Special Soul <span class="sparkle">✨</span>
+            <!-- Gamer Badge Pill -->
+            <div class="badge-pill gamer-badge">
+                <span class="blox-icon">🎮</span> LEVEL UP! • Roblox Legend Unlocked <span class="sparkle">✨</span>
             </div>
 
             <!-- Main Heading -->
             <h1 class="title">
                 Happy Birthday, <br>
                 <span class="name-gradient">Ka Indri</span>
-                <span class="alias-tag">@Noireinds</span>
+                <span class="alias-tag">
+                    <span class="roblox-logo-tag">⏣ Roblox Squad</span> @Noireinds
+                </span>
             </h1>
+
+            <!-- Gamer Stat Bar -->
+            <div class="stat-bar-wrapper">
+                <div class="stat-pill hp-stat">
+                    <span class="stat-icon">❤️</span> <strong>100% Max HP</strong>
+                </div>
+                <div class="stat-pill stamina-stat">
+                    <span class="stat-icon">⚡</span> <strong>Infinite Stamina</strong>
+                </div>
+                <div class="stat-pill luck-stat">
+                    <span class="stat-icon">💎</span> <strong>+99999 Luck & Joy</strong>
+                </div>
+            </div>
 
             <!-- Interactive Cake & Candle Section -->
             <div class="interactive-cake-box">
@@ -53,39 +68,41 @@
                     <div class="cake-middle"></div>
                     <div class="cake-bottom"></div>
                 </div>
-                <p class="cake-hint" id="cakeHint">✨ Tap the candle to make a wish & blow it out! ✨</p>
+                <p class="cake-hint" id="cakeHint">✨ Tap the candle to make a wish & claim your Level Up buff! ✨</p>
             </div>
 
             <!-- Birthday Wishes Glass Card -->
             <div class="wishes-card">
                 <div class="card-glow"></div>
-                <h2 class="wish-heading">A Heartfelt Birthday Wish For You</h2>
+                <h2 class="wish-heading">GG on Reaching a New Milestone! 🏆</h2>
                 <div class="divider">
                     <span>🌟</span>
                 </div>
+                
                 <p class="wish-paragraph highlight-text">
-                    "May your journey through life be blessed with vibrant health, abundant joy, inner tranquility, and long, fruitful years ahead."
+                    "May your real-life HP stay maxed out, your stamina be boundless, and your years ahead be filled with vibrant health, zero lag, and endless happy adventures."
                 </p>
+                
                 <p class="wish-paragraph">
-                    To the wonderful <strong>Ka Indri</strong> (<em>Noireinds</em>), on this milestone celebration, may every step you take lead to blooming opportunities, unbreakable resilience, and memories overflowing with laughter. May you continue to shine bright and inspire everyone fortunate enough to cross paths with you.
+                    To the coolest Roblox buddy and awesome friend, <strong>Ka Indri</strong> (<em>Noireinds</em>)! Another year conquered and a brand new level unlocked! May you easily complete every life 'obby', earn legendary achievements in everything you do, and enjoy endless great times with friends both in-game and in real life.
                 </p>
 
                 <!-- Longevity & Blessings Grid -->
                 <div class="blessings-grid">
                     <div class="blessing-item">
                         <div class="blessing-icon">🌿</div>
-                        <div class="blessing-title">Long & Healthy Life</div>
-                        <div class="blessing-desc">Strength, vitality, and endless wellness in mind, body, and spirit.</div>
+                        <div class="blessing-title">Max HP & Longevity</div>
+                        <div class="blessing-desc">Strength, long life, vitality, and 100% full health bar in real life!</div>
                     </div>
                     <div class="blessing-item">
-                        <div class="blessing-icon">💫</div>
-                        <div class="blessing-title">Dreams Fulfilled</div>
-                        <div class="blessing-desc">May every goal and passion you pursue blossom into reality.</div>
+                        <div class="blessing-icon">🏆</div>
+                        <div class="blessing-title">Legendary Achievements</div>
+                        <div class="blessing-desc">Clearing every life obby, grinding goals, and reaching top-tier milestones.</div>
                     </div>
                     <div class="blessing-item">
-                        <div class="blessing-icon">🌈</div>
-                        <div class="blessing-title">Endless Joy & Peace</div>
-                        <div class="blessing-desc">Surrounded by warmth, happiness, great friends, and smiling faces.</div>
+                        <div class="blessing-icon">🎮</div>
+                        <div class="blessing-title">Zero Lag & Pure Fun</div>
+                        <div class="blessing-desc">Peak squad energy, lots of laughter, good friends, and GG moments!</div>
                     </div>
                 </div>
             </div>
@@ -93,10 +110,10 @@
             <!-- Interactive Action Buttons -->
             <div class="actions-wrapper">
                 <button class="btn btn-primary" id="celebrateBtn">
-                    <span>🎉 Shower with Confetti</span>
+                    <span>🎉 Level Up Confetti Shower</span>
                 </button>
                 <button class="btn btn-secondary" id="giftWishBtn">
-                    <span>🎈 Pop Birthday Balloons</span>
+                    <span>🎈 Pop Blox Balloons</span>
                 </button>
             </div>
 
@@ -105,8 +122,8 @@
 
             <!-- Footer Note -->
             <footer class="footer-note">
-                <p>Crafted with warmest wishes for <strong>Noireinds</strong> 🌸</p>
-                <p class="sub-footer">Here's to another beautiful year of living, laughing, and thriving!</p>
+                <p>🎮 Crafted with warmest wishes for <strong>Noireinds</strong> 🌸</p>
+                <p class="sub-footer">Keep grinding, exploring, and leveling up in life!</p>
             </footer>
         </section>
     </main>
